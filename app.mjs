@@ -1,5 +1,8 @@
 import express from "express";
 import connectionPool from "./utils/db.mjs";
+import questionRoutes from "./routes/questionRoutes.mjs";
+import connectionPool from "./utils/db.mjs";
+
 
 const app = express();
 const port = 4000;
@@ -9,6 +12,9 @@ connectionPool.query("select now()")
   .catch((err) => console.error("Database connection error", err));
 
 app.use(express.json());
+
+app.use("/questions", questionRoutes);
+
 
 app.get("/test", (req, res) => {
   return res.json("Server API is working 🚀");
