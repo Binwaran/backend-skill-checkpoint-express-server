@@ -35,3 +35,11 @@ export const fetchQuestionById = async (id) => {
     return result.rows[0];
   };
   
+  export const searchQuestions = async (keyword) => {
+    const result = await pool.query(
+      `SELECT * FROM questions WHERE title ILIKE $1 OR category ILIKE $1 ORDER BY id ASC`,
+      [`%${keyword}%`]
+    );
+    return result.rows;
+  };
+  

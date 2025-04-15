@@ -1,4 +1,4 @@
-import { insertQuestion, fetchAllQuestions, fetchQuestionById,updateQuestionById,deleteQuestionById, } from "../models/questionModel.mjs";
+import { insertQuestion, fetchAllQuestions, fetchQuestionById,updateQuestionById,deleteQuestionById, searchQuestions } from "../models/questionModel.mjs";
 
 export const createQuestion = async (req, res) => {
   try {
@@ -30,11 +30,22 @@ export const getAllQuestions = async (req, res) => {
     try {
       const questions = await fetchAllQuestions();
       res.json(questions);
+      const { search } = req.query;
+      let result;
+  
+      if (search) {
+        result = await searchQuestions(search);
+      } else {
+        result = await fetchAllQuestions();
+      }
+  
+      res.json(result);
     } catch (error) {
       console.error("Error fetching questions:", error);
       res.status(500).json({ error: "Internal Server Error" });
     }
   };
+  
 
   export const getQuestionById = async (req, res) => {
     try {
@@ -89,4 +100,5 @@ export const getAllQuestions = async (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
     }
   };
+  
   
