@@ -1,7 +1,6 @@
 import express from "express";
 import connectionPool from "./utils/db.mjs";
 import questionRoutes from "./routes/questionRoutes.mjs";
-import connectionPool from "./utils/db.mjs";
 
 
 const app = express();
