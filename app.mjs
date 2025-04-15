@@ -2,6 +2,8 @@ import express from "express";
 import connectionPool from "./utils/db.mjs";
 import questionRoutes from "./routes/questionRoutes.mjs";
 
+
+
 const app = express();
 const port = 4000;
 
