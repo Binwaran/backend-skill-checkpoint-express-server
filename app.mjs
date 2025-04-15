@@ -1,7 +1,12 @@
 import express from "express";
+import connectionPool from "./utils/db.mjs";
 
 const app = express();
 const port = 4000;
+
+connectionPool.query("select now()")
+  .then(()=> console.log("Database connected"))
+  .catch((err) => console.error("Database connection error", err));
 
 app.use(express.json());
 
