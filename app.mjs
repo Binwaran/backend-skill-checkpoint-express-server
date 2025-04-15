@@ -14,7 +14,6 @@ app.use(express.json());
 
 app.use("/questions", questionRoutes);
 
-
 app.get("/test", (req, res) => {
   return res.json("Server API is working 🚀");
 });
