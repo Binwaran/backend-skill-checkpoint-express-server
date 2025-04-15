@@ -7,3 +7,8 @@ export const insertQuestion = async (title, description, category) => {
   );
   return result.rows[0];
 };
+
+export const fetchAllQuestions = async () => {
+  const result = await pool.query("SELECT * FROM questions ORDER BY id ASC");
+  return result.rows;
+};

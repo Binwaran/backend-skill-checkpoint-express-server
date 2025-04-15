@@ -1,4 +1,4 @@
-import { insertQuestion } from "../models/questionModel.mjs";
+import { insertQuestion, fetchAllQuestions } from "../models/questionModel.mjs";
 
 export const createQuestion = async (req, res) => {
   try {
@@ -10,3 +10,13 @@ export const createQuestion = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export const getAllQuestions = async (req, res) => {
+    try {
+      const questions = await fetchAllQuestions();
+      res.json(questions);
+    } catch (error) {
+      console.error("Error fetching questions:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };
