@@ -13,6 +13,7 @@ export const fetchAllQuestions = async () => {
   return result.rows;
 };
 
+
 export const fetchQuestionById = async (id) => {
     const result = await pool.query("SELECT * FROM questions WHERE id = $1", [id]);
     return result.rows[0];

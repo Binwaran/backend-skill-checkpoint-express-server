@@ -3,6 +3,21 @@ import { insertQuestion, fetchAllQuestions, fetchQuestionById } from "../models/
 export const createQuestion = async (req, res) => {
   try {
     const { title, description, category } = req.body;
+
+    // ✅ Validation
+    if (!title || !description || !category) {
+        return res.status(400).json({ error: "All fields are required." });
+      }
+  
+      if (
+        typeof title !== "string" ||
+        typeof description !== "string" ||
+        typeof category !== "string"
+      ) {
+        return res.status(400).json({ error: "All fields must be strings." });
+      }
+  
+
     const newQuestion = await insertQuestion(title, description, category);
     res.status(201).json(newQuestion);
   } catch (error) {
